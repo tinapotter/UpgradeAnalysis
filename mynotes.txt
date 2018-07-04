@@ -1,0 +1,13 @@
+git clone git@github.com:tinapotter/UpgradeAnalysis.git
+cd UpgradeAnalysis/
+
+
+# checkout the other packages
+mykinit
+svn co svn+ssh://svn.cern.ch/reps/atlasoff/PhysicsAnalysis/UpgradePhys/SmearingFunctions/UpgradePerformanceFunctions/tags/UpgradePerformanceFunctions-02-11-00 UpgradePerformanceFunctions
+svn co svn+ssh://svn.cern.ch/reps/atlasoff/PhysicsAnalysis/D3PDTools/RootCore/tags/`svn ls svn+ssh://svn.cern.ch/reps/atlasoff/PhysicsAnalysis/D3PDTools/RootCore/tags | tail -n 1` RootCore
+rcSetup Base,2.4.42
+rc find_packages
+rc compile
+
+
