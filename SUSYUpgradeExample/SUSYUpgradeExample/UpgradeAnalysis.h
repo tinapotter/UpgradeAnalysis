@@ -21,17 +21,6 @@
 
 
 using namespace std;
-/*
-class Particle : public TLorentzVector {
- public:
-  //bool Good;
-  //double pdgid;
-  //int nprong;
-  //double etcone20;
-  //double ptcone30;
-  //ClassDef(Particle,1);
-};
-*/
 
 double M_T(TLorentzVector vec1, TLorentzVector vec2);
 
@@ -73,8 +62,8 @@ public:
   int m_Nem; //!
 
   TH1F* h_NEvents; //!
-  TH1F* h_CrossSection; //!
-  TH1F* h_mcChannel; //!
+  //TH1F* h_CrossSection; //!
+  //TH1F* h_mcChannel; //!
   //
   
   int m_eventNumber; //!
@@ -110,64 +99,11 @@ public:
   double m_trigEff_ee; //!
   double m_trigEff_mm; //!
   double m_trigEff_em; //!
-  /*
-  std::map<TString, TH1F*> h_NEvents; //!
-  std::map<TString, TH1F*> h_MET; //!
-  std::map<TString, TH1F*> h_MSFOS; //!
-  std::map<TString, TH1F*> h_Meff; //!
-  std::map<TString, TH1F*> h_MT; //!
-  std::map<TString, TH1F*> h_MT2; //!
-  //
-  std::map<TString, TH1F*> h_NPho; //!
-  std::map<TString, TH1F*> h_NElec; //!
-  std::map<TString, TH1F*> h_NMuon; //!
-  std::map<TString, TH1F*> h_NTau; //!
-  std::map<TString, TH1F*> h_NJet; //!
-  std::map<TString, TH1F*> h_PtPhos; //!
-  std::map<TString, TH1F*> h_PtElecs; //!
-  std::map<TString, TH1F*> h_PtMuons; //!
-  std::map<TString, TH1F*> h_PtTaus; //!
-  std::map<TString, TH1F*> h_PtJets; //!
-  */
   //
   std::vector<TString> m_cuts;
   //
   TRandom3 m_random3; //!
   UpgradePerformanceFunctions *m_upgrade; //!
-  // objects
-  /*
-  vector<Particle> GenPho;  //!
-  vector<Particle> GenEleMuo;  //!
-  vector<Particle> GenHadTau; //!
-  vector<Particle> GenJet; //!
-  vector<Particle> GenBJet; //!
-  TLorentzVector      m_GenMETTLV; //!
-  double m_GenMETSumet; //!
-  vector<Particle> SmearedPho;  //!
-  vector<Particle> SmearedEleMuo;  //!
-  vector<Particle> SmearedHadTau; //!
-  vector<Particle> SmearedJet; //!
-  vector<Particle> SmearedBJet; //!
-  TLorentzVector      m_SmearedMETTLV; //!
-  // event variables
-  double              m_genWeight; //!
-  int                 m_mcChannel; //!
-  int                 m_evNumber; //!
-  double              m_xs; //!
-  double              m_trig_Eff_e; //!
-  double              m_trig_Eff_m; //!
-  double              m_trig_Eff_ee; //!
-  double              m_trig_Eff_mm; //!
-  double              m_trig_Eff_em; //!
-  bool                m_gotSFOS; //!
-  double              m_mll; //!
-  double              m_met; //!
-  double              m_mT; //!
-  double              m_ht; //!
-  double              m_lt; //!
-  double              m_meff; //!
-  double              m_mT2; //!
-  */
   //
 
   virtual EL::StatusCode  getTruthPhotons(vector<Particle> &GenPho);

@@ -68,87 +68,11 @@ EL::StatusCode UpgradeAnalysis :: histInitialize ()
 
   h_NEvents = new TH1F("h_NEvents", "", 1, -0.5, 0.5);
   wk()->addOutput (h_NEvents);
-  h_CrossSection = new TH1F("h_CrossSection", "", 1, -0.5, 0.5);
-  wk()->addOutput (h_CrossSection);
-  h_mcChannel = new TH1F("h_mcChannel", "", 1, -0.5, 0.5);
-  wk()->addOutput (h_mcChannel);
+  //h_CrossSection = new TH1F("h_CrossSection", "", 1, -0.5, 0.5);
+  //wk()->addOutput (h_CrossSection);
+  //h_mcChannel = new TH1F("h_mcChannel", "", 1, -0.5, 0.5);
+  //wk()->addOutput (h_mcChannel);
 
-  /*
-  m_cuts.push_back("NoCuts");
-  m_cuts.push_back("2L");
-  m_cuts.push_back("2L_MET100");
-  m_cuts.push_back("3L");
-  m_cuts.push_back("3L_Meff100");
-
-  for( unsigned int i = 0; i < m_cuts.size(); i++) {
-
-    h_NEvents[m_cuts[i]] = new TH1F("h_NEvents_"+ m_cuts[i], "", 1, -0.5, 0.5);  
-    wk()->addOutput (h_NEvents[m_cuts[i]]);
-
-    h_MET[m_cuts[i]] = new TH1F("h_MET_"+ m_cuts[i], "", 50, 0, 1000); 
-    h_MET[m_cuts[i]]->SetXTitle("#it{E}_{T}^{miss} [GeV]");      h_MET[m_cuts[i]]->SetYTitle("Events / 20 GeV");
-    wk()->addOutput (h_MET[m_cuts[i]]);
-
-    h_MSFOS[m_cuts[i]] = new TH1F("h_MSFOS_"+ m_cuts[i], "", 100, 0, 1000); 
-    h_MSFOS[m_cuts[i]]->SetXTitle("m_{SFOS} [GeV]");      h_MSFOS[m_cuts[i]]->SetYTitle("Events / 10 GeV");
-    wk()->addOutput (h_MSFOS[m_cuts[i]]);
-
-    h_Meff[m_cuts[i]] = new TH1F("h_Meff_"+ m_cuts[i], "", 75, 0, 1500); 
-    h_Meff[m_cuts[i]]->SetXTitle("m_{eff} [GeV]");      h_Meff[m_cuts[i]]->SetYTitle("Events / 20 GeV");
-    wk()->addOutput (h_Meff[m_cuts[i]]);
-
-    h_MT[m_cuts[i]] = new TH1F("h_MT_"+ m_cuts[i], "", 50, 0, 1000); 
-    h_MT[m_cuts[i]]->SetXTitle("m_{T} [GeV]");      h_MT[m_cuts[i]]->SetYTitle("Events / 20 GeV");
-    wk()->addOutput (h_MT[m_cuts[i]]);
-
-    h_MT2[m_cuts[i]] = new TH1F("h_MT2_"+ m_cuts[i], "", 50, 0, 1000); 
-    h_MT2[m_cuts[i]]->SetXTitle("m_{T2} [GeV]");      h_MT2[m_cuts[i]]->SetYTitle("Events / 20 GeV");
-    wk()->addOutput (h_MT2[m_cuts[i]]);
-
-    //
-
-    h_NPho[m_cuts[i]] = new TH1F("h_NPho_"+ m_cuts[i], "", 6, -0.5, 5.5); 
-    h_NPho[m_cuts[i]]->SetXTitle("Photon multiplicity");      h_NPho[m_cuts[i]]->SetYTitle("Events");
-    wk()->addOutput (h_NPho[m_cuts[i]]);
-
-    h_NElec[m_cuts[i]] = new TH1F("h_NElec_"+ m_cuts[i], "", 6, -0.5, 5.5); 
-    h_NElec[m_cuts[i]]->SetXTitle("Electron multiplicity");      h_NElec[m_cuts[i]]->SetYTitle("Events");
-    wk()->addOutput (h_NElec[m_cuts[i]]);
-
-    h_NMuon[m_cuts[i]] = new TH1F("h_NMuon_"+ m_cuts[i], "", 6, -0.5, 5.5); 
-    h_NMuon[m_cuts[i]]->SetXTitle("Muon multiplicity");      h_NMuon[m_cuts[i]]->SetYTitle("Events");
-    wk()->addOutput (h_NMuon[m_cuts[i]]);
-
-    h_NTau[m_cuts[i]] = new TH1F("h_NTau_"+ m_cuts[i], "", 6, -0.5, 5.5); 
-    h_NTau[m_cuts[i]]->SetXTitle("Tau multiplicity");      h_NTau[m_cuts[i]]->SetYTitle("Events");
-    wk()->addOutput (h_NTau[m_cuts[i]]);
-
-    h_NJet[m_cuts[i]] = new TH1F("h_NJet_"+ m_cuts[i], "", 20, -0.5, 19.5); 
-    h_NJet[m_cuts[i]]->SetXTitle("Jet multiplicity");      h_NJet[m_cuts[i]]->SetYTitle("Events");
-    wk()->addOutput (h_NJet[m_cuts[i]]);
-
-    h_PtPhos[m_cuts[i]] = new TH1F("h_PtPhos_"+ m_cuts[i], "", 50, 0, 1000); 
-    h_PtPhos[m_cuts[i]]->SetXTitle("Photon p_{T} [GeV]");      h_PtPhos[m_cuts[i]]->SetYTitle("Events / 20 GeV");
-    wk()->addOutput (h_PtPhos[m_cuts[i]]);
-
-    h_PtElecs[m_cuts[i]] = new TH1F("h_PtElecs_"+ m_cuts[i], "", 50, 0, 1000); 
-    h_PtElecs[m_cuts[i]]->SetXTitle("Electron p_{T} [GeV]");      h_PtElecs[m_cuts[i]]->SetYTitle("Events / 20 GeV");
-    wk()->addOutput (h_PtElecs[m_cuts[i]]);
-
-    h_PtMuons[m_cuts[i]] = new TH1F("h_PtMuons_"+ m_cuts[i], "", 50, 0, 1000); 
-    h_PtMuons[m_cuts[i]]->SetXTitle("Muon p_{T} [GeV]");      h_PtMuons[m_cuts[i]]->SetYTitle("Events / 20 GeV");
-    wk()->addOutput (h_PtMuons[m_cuts[i]]);
-
-    h_PtTaus[m_cuts[i]] = new TH1F("h_PtTaus_"+ m_cuts[i], "", 50, 0, 1000); 
-    h_PtTaus[m_cuts[i]]->SetXTitle("Tau p_{T} [GeV]");      h_PtTaus[m_cuts[i]]->SetYTitle("Events / 20 GeV");
-    wk()->addOutput (h_PtTaus[m_cuts[i]]);
-
-    h_PtJets[m_cuts[i]] = new TH1F("h_PtJets_"+ m_cuts[i], "", 50, 0, 1000); 
-    h_PtJets[m_cuts[i]]->SetXTitle("Jet p_{T} [GeV]");      h_PtJets[m_cuts[i]]->SetYTitle("Events / 20 GeV");
-    wk()->addOutput (h_PtJets[m_cuts[i]]);
-
-  }
-  */
   return EL::StatusCode::SUCCESS;
 }
 
@@ -556,10 +480,10 @@ EL::StatusCode UpgradeAnalysis :: execute ()
      =============================================================== */
 
   h_NEvents->Fill(0.0, m_genWeight);
-  if( m_eventCounter ==1 ){
-    h_mcChannel->Fill(0.0, m_mcChannel);
-    h_CrossSection->Fill(0.0, m_xs);
-  }
+  //if( m_eventCounter ==1 ){
+  //  h_mcChannel->Fill(0.0, m_mcChannel);
+  //  h_CrossSection->Fill(0.0, m_xs);
+  //}
   bool write_event = true;
   if( (m_mcChannel == 410009 || m_mcChannel == 410000) && m_GenMETTLV.Et()/1000.>100 ) write_event=false; // don't write out the high MET events for the ttbar dilepton or notallhad samples.
 
@@ -1132,21 +1056,21 @@ void UpgradeAnalysis::ApplyPtEtaThresholds(vector<Particle> &SmearedPho, vector<
   /*for( unsigned int i=0; i<SmearedPho.size(); i++ ){
     if( SmearedPho[i].Pt()*GeV < 20 || fabs(SmearedPho[i].Eta())>2.47 ) SmearedPho[i].Good=false;
     }*/
-  // electrons and muons pT>15 and eta < 2.47/2.7
+  // electrons and muons pT>15 and eta < 4.
   for( unsigned int i=0; i<SmearedEleMuo.size(); i++ ){
-    if( fabs(SmearedEleMuo[i].pdgid) ==11 && (SmearedEleMuo[i].Pt()*GeV < 15 || fabs(SmearedEleMuo[i].Eta())>2.47) ) SmearedEleMuo[i].Good=false;
-    if( fabs(SmearedEleMuo[i].pdgid) ==13 && (SmearedEleMuo[i].Pt()*GeV < 15 || fabs(SmearedEleMuo[i].Eta())>2.7) ) SmearedEleMuo[i].Good=false;
+    if( fabs(SmearedEleMuo[i].pdgid) ==11 && (SmearedEleMuo[i].Pt()*GeV < 15 || fabs(SmearedEleMuo[i].Eta())>4.0) ) SmearedEleMuo[i].Good=false;
+    if( fabs(SmearedEleMuo[i].pdgid) ==13 && (SmearedEleMuo[i].Pt()*GeV < 15 || fabs(SmearedEleMuo[i].Eta())>4.0) ) SmearedEleMuo[i].Good=false;
   }
   // hadronic taus pT>20 and eta < 2.47
   for( unsigned int i=0; i<SmearedHadTau.size(); i++ ){
-    if( SmearedHadTau[i].Pt()*GeV < 20 || fabs(SmearedHadTau[i].Eta())>2.47 ) SmearedHadTau[i].Good=false;
+    if( SmearedHadTau[i].Pt()*GeV < 20 || fabs(SmearedHadTau[i].Eta())>4.0 ) SmearedHadTau[i].Good=false;
   }
   // jets pT>20 and eta < 2.5
   for( unsigned int i=0; i<SmearedJet.size(); i++ ){
-    if( SmearedJet[i].Pt()*GeV < 20 || fabs(SmearedJet[i].Eta())>2.5 ) SmearedJet[i].Good=false;
+    if( SmearedJet[i].Pt()*GeV < 20 || fabs(SmearedJet[i].Eta())>4.0 ) SmearedJet[i].Good=false;
   }
   for( unsigned int i=0; i<SmearedBJet.size(); i++ ){
-    if( SmearedBJet[i].Pt()*GeV < 20 || fabs(SmearedBJet[i].Eta())>2.5 ) SmearedBJet[i].Good=false;
+    if( SmearedBJet[i].Pt()*GeV < 20 || fabs(SmearedBJet[i].Eta())>4.0 ) SmearedBJet[i].Good=false;
   }
   RemoveBad(SmearedPho);
   RemoveBad(SmearedEleMuo);
@@ -1190,13 +1114,14 @@ void UpgradeAnalysis::OverlapRemoval(vector<Particle> &SmearedPho, vector<Partic
     }
   }
   RemoveBad(SmearedEleMuo);
-  // 5. dR(muon, non b-tagged jet)<0.2, discard non-btagged jet if mu pT/jet pT ratio >0.5
+  // 5. dR(muon, non b-tagged jet)<0.2, discard non-btagged jet 
   for( unsigned int i=0; i<SmearedEleMuo.size(); i++ ){
     if( fabs(SmearedEleMuo[i].pdgid) != 13 ) continue;
     for( unsigned int j=0; j<SmearedJet.size(); j++ ){
       if( SmearedJet[i].pdgid==5 ) continue;
-      if( SmearedEleMuo[i].DeltaR(SmearedJet[j])>0.2) continue;
-      if( SmearedEleMuo[i].Pt()/SmearedJet[j].Pt()>0.5 ) SmearedJet[j].Good=false;
+      if( SmearedEleMuo[i].DeltaR(SmearedJet[j])<0.2) SmearedJet[j].Good=false;
+      //if( SmearedEleMuo[i].DeltaR(SmearedJet[j])>0.2) continue;
+      //if( SmearedEleMuo[i].Pt()/SmearedJet[j].Pt()>0.5 ) SmearedJet[j].Good=false; //discard non-btagged jet if mu pT/jet pT ratio >0.5
     }
   }
   RemoveBad(SmearedJet);
